@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'django_countries',
     'userAccounts',
+    'touristSpots',
 ]
 
 MIDDLEWARE = [
