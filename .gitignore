@@ -3,4 +3,5 @@
 *.pyc
 **/*.pyc
 *.vscode
-settings.jsonsendgrid.env
+settings.json
+sendgrid.env
