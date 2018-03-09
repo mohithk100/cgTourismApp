@@ -42,11 +42,16 @@ class Places(models.Model):
 
 
 class PlaceImages(models.Model):
-    place = models.ForeignKey(Places , related_name = 'images')
+    place = models.ForeignKey(Places, related_name = 'images')
     image = models.ImageField(upload_to=get_upload_url)
 
     def ___str__(self):
         return self.place.name
 
+    def __unicode__(self):
+        self.image
+
     class Meta:
         verbose_name_plural="Images"
+
+    

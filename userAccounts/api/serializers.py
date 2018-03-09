@@ -30,7 +30,7 @@ class UserSerializer(CountryFieldMixin,serializers.ModelSerializer):
         list_of_keys = validated_data.keys()
         try:
             otp = validated_data['otp']
-        except Exception as e:
+        except:
             otp = ''
         if otp=='':
             auth_token = '1729bdc3c04616dbc8ca2a1fde8b5a46'

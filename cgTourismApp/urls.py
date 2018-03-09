@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/',include('rest_framework.urls')),
     url(r'^user/',include('userAccounts.urls')),
+    url(r'^places/',include('touristSpots.urls')),
 ] + static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
