@@ -60,8 +60,8 @@ class PlaceImages(models.Model):
 
 
 class PlaceReviews(models.Model):
-    user = models.ForeignKey(User, related_name='reviews_user')
-    place = models.ForeignKey(Places, related_name='reviews_place')
+    user = models.ForeignKey(User, related_name='reviews_user',on_delete=models.SET_NULL,null=True)
+    place = models.ForeignKey(Places, related_name='reviews_place',on_delete=models.SET_NULL , null = True)
     review = models.TextField(max_length=500)
 
     def __str__(self):
