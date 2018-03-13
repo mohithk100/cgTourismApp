@@ -8,9 +8,13 @@ import random
 import sendgrid
 import os
 from sendgrid.helpers.mail import *
+from touristSpots.models import PlaceReviews
 
 
 
+class MyPrimaryKeyRelatedField(serializers.PrimaryKeyRelatedField):
+    def to_representation(self, value):
+        return {value.place.name:value.review}
 
 
 class UserSerializer(CountryFieldMixin,serializers.ModelSerializer):
@@ -19,9 +23,24 @@ class UserSerializer(CountryFieldMixin,serializers.ModelSerializer):
     success = serializers.CharField(max_length= 10 , required=False)
     message = serializers.CharField(max_length= 30 ,required = False)
     otp = serializers.CharField(max_length = 10,write_only=True,allow_blank=True)
+    reviews_user = MyPrimaryKeyRelatedField(many=True, queryset=PlaceReviews.objects.all())
     class Meta:
         model = User
-        fields = ('username','password','email','first_name','last_name','mobileNumber','country','avatar','description','otp','success','message')
+        fields = (
+                'username',
+                'password',
+                'email',
+                'first_name',
+                'last_name',
+                'mobileNumber',
+                'country',
+                'avatar',
+                'description',
+                'otp',
+                'success',
+                'message',
+                'reviews_user',
+                )
         extra_kwargs={
             'password':{
                 'write_only':True,

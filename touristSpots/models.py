@@ -53,7 +53,7 @@ class PlaceImages(models.Model):
         return self.place.name
 
     def __unicode__(self):
-        self.image
+        return unicode(self.image.url)
 
     class Meta:
         verbose_name_plural="Images"
@@ -68,7 +68,7 @@ class PlaceReviews(models.Model):
         return self.user.username
 
     def __unicode__(self):
-        return self.user.username
+        return unicode(self.user.username)
 
     class Meta:
         verbose_name_plural="PlaceReviews"

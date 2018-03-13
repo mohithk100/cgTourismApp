@@ -1,15 +1,20 @@
 from rest_framework import serializers
-from touristSpots.models import Places,PlaceImages
+from touristSpots.models import Places,PlaceImages,PlaceReviews
 from django.utils import six
 
 
 
-class MyPrimaryKeyRelatedField(serializers.PrimaryKeyRelatedField):
+class MyPrimaryKeyRelatedFieldImage(serializers.PrimaryKeyRelatedField):
     def to_representation(self , value):
         return value.image.url
 
+class MyPrimaryKeyRelatedFieldPlace(serializers.PrimaryKeyRelatedField):
+    def to_representation(self, value):
+        return {value.user.username:value.review,}
+
 class PlaceSerializer(serializers.ModelSerializer):
-    images = MyPrimaryKeyRelatedField(many=True, queryset=PlaceImages.objects.all())
+    images = MyPrimaryKeyRelatedFieldImage(many=True, queryset=PlaceImages.objects.all())
+    reviews_place = MyPrimaryKeyRelatedFieldPlace(many=True, queryset=PlaceReviews.objects.all())
     class Meta:
         model = Places
         fields = (
@@ -19,4 +24,6 @@ class PlaceSerializer(serializers.ModelSerializer):
             'category',
             'location',
             'images',
+            # 'reviews_user',
+            'reviews_place',
             )
