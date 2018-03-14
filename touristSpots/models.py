@@ -5,35 +5,42 @@ from userAccounts.models import User
 import re
 
 
-CHOICES = (
-    ('cave','Cave'),
-    ('dam','Dam'),
-    ('hill','Hill'),
-    ('monument','Monument'),
-    ('museum','Museum'),
-    ('national_park_and_bioshphere_reserve','National Park & Biosphere Reserve'),
-    ('religious_attraction','Religious Attraction'),
-    ('tiger_reserve','Tiger Reserve'),
-    ('waterfall','Waterfall'),
-    ('wildfile_sanctuary','Wildlife Sanctuary'),
-    ('other','Other'),
-)
-
 def get_upload_url(instance , filename):
     name = instance.place.name
     pattern = re.compile(r'\s+')
     name = re.sub(pattern, '', name)
     return 'touristSpotsImages/%s/%s'%( name , filename)
 
+def get_category_upload_url(instance, filename):
+    name = instance.title
+    pattern = re.compile(r'\s+')
+    name = re.sub(pattern , '' ,name)
+    return 'CategoryImages/%s/%s'%(name , filename)
+
+class Category(models.Model):
+    key = models.CharField(max_length = 60,unique = True)
+    title = models.CharField(max_length = 80, unique = True)
+    description = models.TextField(max_length=1000,blank= True)
+    image = models.ImageField(upload_to =get_category_upload_url , default = 'CategoryImages/defaultImage/defaultCategoryImage.jpg')
+
+    def __str__(self):
+        return unicode(self.title)
+
+    def __unicode__(self):
+        return unicode(self.title)
+
+    class Meta:
+        verbose_name_plural='Categories'
+
 
 class Places(models.Model):
     name = models.CharField(max_length = 255 , blank = False)
     description = models.TextField(max_length = 2500,blank = True)
     major_attraction = models.BooleanField(default = False)
-    category = models.CharField(max_length = 255 , choices = CHOICES , blank = True)
     location = models.CharField(max_length = 255,blank = True)
     latitude = models.DecimalField(blank = True,max_digits=9,decimal_places=6,default = Decimal('0.0000'))
     longitude =models.DecimalField(blank = True,max_digits=9,decimal_places=6,default = Decimal('0.0000'))
+    category = models.ForeignKey(Category,related_name='category',on_delete=models.SET_NULL,null = True)
 
     def ___str__(self):
         return self.name
@@ -72,5 +79,9 @@ class PlaceReviews(models.Model):
 
     class Meta:
         verbose_name_plural="PlaceReviews"
+
+
+
+
 
     
