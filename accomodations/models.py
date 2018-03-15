@@ -11,6 +11,14 @@ def get_upload_url(instance , filename):
     return 'CTB_ResortImages/%s/%s'%( name , filename)
 
 
+def get_pdf_upload_url(instance, filename):
+    name = instance.city_name
+    pattern = re.compile(r'\s+')
+    name = re.sub(pattern, '', name)
+    return 'CitywiseHotelpdf/%s/%s'%( name , filename)
+
+
+
 class CTB_Resorts(models.Model):
     title = models.CharField(max_length = 200)
     short_location = models.CharField(max_length = 20,blank = True)
@@ -116,3 +124,31 @@ class RegisteredTravelOperators(models.Model):
     class Meta:
         verbose_name_plural = 'Registered Tour and Travel Operators'
 
+
+class CitywiseHotelList(models.Model):
+    city_name = models.CharField(max_length = 100)
+    pdf = models.FileField(upload_to=get_pdf_upload_url)
+
+    def __str__(self):
+        return unicode(self.city_name)
+
+    def __unicode__(self):
+        return unicode(self.city_name)
+
+    class Meta:
+        verbose_name_plural = 'City Wise Hotel Pdfs'
+
+
+class TouristGuideList(models.Model):
+    name = models.CharField(max_length = 255)
+    number = models.CharField(max_length = 15,blank = True)
+    district = models.CharField(max_length = 250)
+
+    def __str__(self):
+        return unicode(self.name)
+
+    def __unicode__(self):
+        return unicode(self.name)
+
+    class Meta:
+        verbose_name_plural = 'Tourist Guide List'

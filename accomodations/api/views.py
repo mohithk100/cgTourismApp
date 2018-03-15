@@ -3,11 +3,15 @@ from .serializers import (
     CTB_ResortsSerializer,
     RegisteredHotelsSerializer,
     RegisteredTravelOperatorsSerializer,
+    CitywiseHotelListSerializer,
+    TouristGuideListSerializer,
 )
 from accomodations.models import (
     CTB_Resorts,
     RegisteredHotels,
     RegisteredTravelOperators,
+    CitywiseHotelList,
+    TouristGuideList,
 )
 
 
@@ -23,4 +27,14 @@ class RegisteredHotelsList(generics.ListAPIView):
 class TravelOperatorsList(generics.ListAPIView):
     queryset = RegisteredTravelOperators.objects.all()
     serializer_class = RegisteredTravelOperatorsSerializer
+
+
+class CityWiseHotelList(generics.ListAPIView):
+    queryset = CitywiseHotelList.objects.all()
+    serializer_class = CitywiseHotelListSerializer
+
+
+class TouristGuideList(generics.ListAPIView):
+    queryset = TouristGuideList.objects.all()
+    serializer_class = TouristGuideListSerializer
 

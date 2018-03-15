@@ -8,6 +8,8 @@ from .models import (
     CTB_ResortOccupany,
     RegisteredHotels,
     RegisteredTravelOperators,
+    CitywiseHotelList,
+    TouristGuideList,
 )
 
 class CTB_ResortOccupanyInline(admin.TabularInline):
@@ -42,8 +44,13 @@ class RegisteredTravelOperatorsAdmin(admin.ModelAdmin):
     list_display = ('name','contact_no','email')
 
 
+class TouristGuideListAdmin(admin.ModelAdmin):
+    list_display = ('name','number','district')
+
+
 admin.site.register(CTB_Resorts,CTB_ResortsAdmin)
 admin.site.register(RegisteredHotels,RegisteredHotelsAdmin)
 admin.site.register(RegisteredTravelOperators,RegisteredHotelsAdmin)
-
+admin.site.register(CitywiseHotelList)
+admin.site.register(TouristGuideList,TouristGuideListAdmin)
 

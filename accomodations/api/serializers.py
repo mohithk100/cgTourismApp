@@ -7,6 +7,8 @@ from accomodations.models import (
     CTB_ResortOccupany,
     RegisteredHotels,
     RegisteredTravelOperators,
+    CitywiseHotelList,
+    TouristGuideList,
 )
 
 
@@ -70,4 +72,23 @@ class RegisteredTravelOperatorsSerializer(serializers.ModelSerializer):
             'address',
             'contact_no',
             'email',
+        )
+
+
+class CitywiseHotelListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CitywiseHotelList
+        fields = (
+            'city_name',
+            'pdf',
+        )
+
+
+class TouristGuideListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TouristGuideList
+        fields = (
+            'name',
+            'number',
+            'district',
         )
