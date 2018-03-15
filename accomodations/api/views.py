@@ -1,4 +1,8 @@
 from rest_framework import generics
+from rest_framework.reverse import reverse
+from rest_framework.views import APIView
+from rest_framework.renderers import BrowsableAPIRenderer,JSONRenderer
+from rest_framework.response import Response
 from .serializers import (
     CTB_ResortsSerializer,
     RegisteredHotelsSerializer,
@@ -38,3 +42,10 @@ class TouristGuideList(generics.ListAPIView):
     queryset = TouristGuideList.objects.all()
     serializer_class = TouristGuideListSerializer
 
+class DiscountPolicy(APIView):
+
+    renderer_classes = (JSONRenderer, )
+
+    def get(self, request):
+        data = {'pdf':reverse('/media/DiscountPolicy/discount.pdf') }
+        return Response(data)

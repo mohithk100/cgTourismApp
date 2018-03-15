@@ -4,7 +4,8 @@ from .views import (
     RegisteredHotelsList,
     TravelOperatorsList,
     CityWiseHotelList,
-    TouristGuideList
+    TouristGuideList,
+    DiscountPolicy,
 )
 
 urlpatterns = [
