@@ -1,5 +1,13 @@
 from rest_framework import serializers
-from accomodations.models import CTB_Resorts,CTB_ResortImages,CTB_ResortFacilities,CTB_ResortTarrif,CTB_ResortOccupany
+from accomodations.models import (
+    CTB_Resorts,
+    CTB_ResortImages,
+    CTB_ResortFacilities,
+    CTB_ResortTarrif,
+    CTB_ResortOccupany,
+    RegisteredHotels,
+    RegisteredTravelOperators,
+)
 
 
 class MyPrimaryKeyRelatedFieldImage(serializers.PrimaryKeyRelatedField):
@@ -11,11 +19,13 @@ class MyPrimaryKeyRelatedFieldFacilities(serializers.PrimaryKeyRelatedField):
     def to_representation(self , value):
         return str(value.facility_name)
 
+
 class MyPrimaryKeyRelatedFieldTarrif(serializers.PrimaryKeyRelatedField):
     def to_representation(self , value):
         print "THis ran"
         print value
         return {'checkin_time': value.checkin_time,'checkout_time': value.checkout_time}
+
 
 class MyPrimaryKeyRelatedFieldOccupancy(serializers.PrimaryKeyRelatedField):
     def to_representation(self , value):
@@ -37,4 +47,27 @@ class CTB_ResortsSerializer(serializers.ModelSerializer):
             'facilities',
             'tarrif',
             'occupancy',
+        )
+
+
+class RegisteredHotelsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RegisteredHotels
+        fields = (
+            'name',
+            'address',
+            'contact_no',
+            'email',
+            'website',
+        )
+
+
+class RegisteredTravelOperatorsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RegisteredTravelOperators
+        fields = (
+            'name',
+            'address',
+            'contact_no',
+            'email',
         )

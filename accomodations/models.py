@@ -11,7 +11,6 @@ def get_upload_url(instance , filename):
     return 'CTB_ResortImages/%s/%s'%( name , filename)
 
 
-
 class CTB_Resorts(models.Model):
     title = models.CharField(max_length = 200)
     short_location = models.CharField(max_length = 20,blank = True)
@@ -26,6 +25,7 @@ class CTB_Resorts(models.Model):
     class Meta:
         verbose_name_plural = 'CTB_Resorts'
 
+
 class CTB_ResortImages(models.Model):
     CTB_Resort = models.ForeignKey(CTB_Resorts , related_name='images',on_delete=models.SET_NULL,null = True)
     image = models.ImageField(upload_to = get_upload_url)
@@ -38,6 +38,7 @@ class CTB_ResortImages(models.Model):
 
     class Meta:
         verbose_name_plural = 'CTB_ResortImages'
+
 
 class CTB_ResortFacilities(models.Model):
     CTB_Resort = models.ForeignKey(CTB_Resorts, related_name='facilities', on_delete=models.SET_NULL, null = True)
@@ -81,7 +82,37 @@ class CTB_ResortOccupany(models.Model):
 
     class Meta:
         verbose_name_plural = 'CTB_ResortOccupany'
-    
 
 
+class RegisteredHotels(models.Model):
+    name = models.CharField(max_length = 100)
+    address = models.TextField(max_length=300,blank=True)
+    contact_no = models.CharField(max_length=300,blank = True)
+    email = models.EmailField(max_length = 254)
+    website = models.URLField()
+
+    def __str__(self):
+        return unicode(self.name)
+
+    def __unicode__(self):
+        return unicode(self.name)
+
+    class Meta:
+        verbose_name_plural = 'Registered Hotels'
+
+
+class RegisteredTravelOperators(models.Model):
+    name = models.CharField(max_length = 250)
+    address = models.CharField(max_length = 255)
+    contact_no = models.CharField(max_length = 255)
+    email = models.EmailField(max_length = 255)
+
+    def __str__(self):
+        return unicode(self.name)
+
+    def __unicode__(self):
+        return unicode(self.name)
+
+    class Meta:
+        verbose_name_plural = 'Registered Tour and Travel Operators'
 
