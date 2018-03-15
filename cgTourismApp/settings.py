@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_countries',
     'userAccounts',
     'touristSpots',
+    'accomodations',
 ]
 
 MIDDLEWARE = [

@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^api-auth/',include('rest_framework.urls')),
     url(r'^user/',include('userAccounts.urls')),
     url(r'^places/',include('touristSpots.urls')),
+    url(r'^cbt_resorts/',include('accomodations.urls')),
 ] + static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
