@@ -11,7 +11,7 @@ class MyPrimaryKeyRelatedFieldImage(serializers.PrimaryKeyRelatedField):
 
 class MyPrimaryKeyRelatedFieldPlace(serializers.PrimaryKeyRelatedField):
     def to_representation(self, value):
-        return {value.user.username:value.review,}
+        return {'username':value.user.username,'review':value.review,'avatar':value.user.avatar.url,}
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:

@@ -24,8 +24,6 @@ class MyPrimaryKeyRelatedFieldFacilities(serializers.PrimaryKeyRelatedField):
 
 class MyPrimaryKeyRelatedFieldTarrif(serializers.PrimaryKeyRelatedField):
     def to_representation(self , value):
-        print "THis ran"
-        print value
         return {'checkin_time': value.checkin_time,'checkout_time': value.checkout_time}
 
 

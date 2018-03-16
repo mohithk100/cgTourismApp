@@ -5,4 +5,4 @@ from rest_framework import serializers
 class ImageGallerySerializer(serializers.ModelSerializer):
     class  Meta:
         model = ImageGallery
-        fields = ('name','image')
+        fields = ('name','image','images_array')
