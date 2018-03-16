@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^places/',include('touristSpots.urls')),
     url(r'^accomodations/',include('accomodations.urls')),
     url(r'^image_gallery/', include('imageGallery.urls')),
+    url(r'^downloads/', include('downloads.urls')),
 ] + static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
