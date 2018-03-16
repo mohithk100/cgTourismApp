@@ -42,10 +42,3 @@ class TouristGuideList(generics.ListAPIView):
     queryset = TouristGuideList.objects.all()
     serializer_class = TouristGuideListSerializer
 
-class DiscountPolicy(APIView):
-
-    renderer_classes = (JSONRenderer, )
-
-    def get(self, request):
-        data = {'pdf':reverse('/media/DiscountPolicy/discount.pdf') }
-        return Response(data)

@@ -5,7 +5,6 @@ from .views import (
     TravelOperatorsList,
     CityWiseHotelList,
     TouristGuideList,
-    DiscountPolicy,
 )
 
 urlpatterns = [

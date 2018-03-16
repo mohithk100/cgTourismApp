@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'userAccounts',
     'touristSpots',
     'accomodations',
+    'imageGallery',
 ]
 
 MIDDLEWARE = [
