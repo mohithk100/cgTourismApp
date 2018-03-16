@@ -7,15 +7,11 @@ from rest_framework.permissions import IsAdminUser
 class List(generics.ListAPIView):
     queryset = Places.objects.all()
     serializer_class = PlaceSerializer
-    authentication_classes = (BasicAuthentication,)
-    permission_classes = (IsAdminUser,)
 
 
 class CreateReview(generics.CreateAPIView):
     queryset = PlaceReviews.objects.all()
     serializer_class = ReviewSerializer
-    authentication_class = (BasicAuthentication,)
-    permission_classes = (IsAdminUser,)
 
 
 class RetrievePlace(generics.ListAPIView):
@@ -29,3 +25,10 @@ class RetrievePlace(generics.ListAPIView):
 class CategoryList(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+class MajorAttraction(generics.ListAPIView):
+    serializer_class = PlaceSerializer
+
+    def get_queryset(self):
+        return Places.objects.filter(major_attraction=True)
