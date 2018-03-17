@@ -10,7 +10,7 @@ from .views import (
 urlpatterns = [
     url(r'^brochure/list/$', BrochureList.as_view(), name = 'BrochureList'),
     url(r'^publication/list/$', PublicationList.as_view(), name = 'PublicationList'),
-    url(r'^registeration_form/list/$', RegisterationFormList.as_view(), name = 'RegisterationFormList'),
+    url(r'^registration_form/list/$', RegisterationFormList.as_view(), name = 'RegisterationFormList'),
     url(r'^ctb_newsletter/list/$', CTB_NewsletterList.as_view(), name = 'CTBNewsletterList'),
     url(r'^important_document/list/$', ImportantDocumentList.as_view(), name = 'ImportantDocumentList'),
 ]

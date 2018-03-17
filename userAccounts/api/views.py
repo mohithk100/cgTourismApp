@@ -9,11 +9,8 @@ class Retrieve(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'username'
-    authentication_classes = (BasicAuthentication,)
-    permission_classes = (IsOwner,IsAdminUser)
+
 
 class Create(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    authentication_classes = (BasicAuthentication,)
-    permission_classes = (IsAdminUser,)
