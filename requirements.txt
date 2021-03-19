@@ -10,7 +10,7 @@ cryptography==2.1.4
 Django==1.11.10
 django-countries==5.1.1
 django-phonenumber-field==2.0.0
-djangorestframework==3.7.7
+djangorestframework==3.11.2
 enum34==1.1.6
 futures==3.2.0
 idna==2.6
